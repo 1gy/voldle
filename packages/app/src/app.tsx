@@ -1,8 +1,8 @@
 import type { Song } from "@1gy/voldle-fetch-songs/types";
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import { type FC, Suspense, useTransition } from "react";
 import styles from "./app.module.css";
-import { compareModeAtom, ModeToggle } from "./features/compare-mode";
+import { compareModeAtom } from "./features/compare-mode";
 import {
 	type CompareMode,
 	candidateCountAtom,
@@ -76,7 +76,7 @@ const Game: FC = () => {
 	const candidateCount = useAtomValue(candidateCountAtom);
 	const targetReveal = useAtomValue(targetRevealAtom);
 	const guessedSongIds = useAtomValue(guessedSongIdsAtom);
-	const [mode, setMode] = useAtom(compareModeAtom);
+	const mode = useAtomValue(compareModeAtom);
 	const submitGuess = useSetAtom(submitGuessAtom);
 	const resetGame = useSetAtom(resetGameAtom);
 	const [isPending, startTransition] = useTransition();
@@ -102,11 +102,6 @@ const Game: FC = () => {
 				total={MAX_GUESSES}
 				candidateCountLabel={candidateCount.toLocaleString()}
 			/>
-
-			<div className={styles.controls}>
-				<span className={styles.modeLabel}>レベル比較:</span>
-				<ModeToggle value={mode} onChange={setMode} />
-			</div>
 
 			<SongAutocomplete
 				songs={songs}
