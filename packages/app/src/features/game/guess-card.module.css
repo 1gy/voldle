@@ -1,0 +1,123 @@
+.card {
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	padding: 12px 14px;
+	background: var(--bg-elevated);
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.card.highlight {
+	border-color: var(--success);
+	box-shadow: 0 0 0 2px var(--success-bg);
+}
+
+.header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+}
+
+.title {
+	font-weight: 500;
+	font-size: 16px;
+	margin-right: auto;
+}
+
+.badge {
+	display: inline-flex;
+	align-items: center;
+	padding: 3px 9px;
+	border-radius: 999px;
+	font-size: 12px;
+	font-weight: 500;
+	border: 1px solid transparent;
+}
+
+.match {
+	background: var(--success-bg);
+	color: var(--success);
+	border-color: var(--success);
+}
+
+.partial {
+	background: var(--warn-bg);
+	color: var(--warn);
+	border-color: var(--warn);
+}
+
+.miss {
+	background: var(--danger-bg);
+	color: var(--danger);
+	border-color: var(--danger);
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(10, minmax(0, 1fr));
+	gap: 4px;
+}
+
+.cell {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2px;
+	padding: 6px 0;
+	border-radius: 6px;
+	font-size: 12px;
+	border: 1px solid transparent;
+	min-height: 52px;
+}
+
+.cellLabel {
+	font-size: 10px;
+	font-weight: 600;
+	letter-spacing: 0.5px;
+	color: var(--text-muted);
+}
+
+.cellValue {
+	font-size: 14px;
+	font-weight: 600;
+	font-family: var(--mono);
+	display: inline-flex;
+	align-items: center;
+	gap: 2px;
+}
+
+.cellEmpty {
+	background: var(--neutral-bg);
+	color: var(--neutral);
+}
+
+.cellEmpty .cellLabel {
+	color: var(--neutral);
+}
+
+.cellMatch {
+	background: var(--success-bg);
+	color: var(--success);
+	border-color: var(--success);
+}
+
+.cellMatch .cellLabel {
+	color: var(--success);
+}
+
+.cellMiss {
+	background: var(--danger-bg);
+	color: var(--danger);
+	border-color: var(--danger);
+}
+
+.cellMiss .cellLabel {
+	color: var(--danger);
+}
+
+.arrow {
+	font-size: 11px;
+}

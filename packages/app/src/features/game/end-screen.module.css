@@ -1,0 +1,45 @@
+.endScreen {
+	border-radius: 8px;
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	border: 1px solid var(--border);
+	background: var(--bg-elevated);
+}
+
+.endScreen.won {
+	border-color: var(--success);
+	background: var(--success-bg);
+}
+
+.endScreen.lost {
+	border-color: var(--danger);
+	background: var(--danger-bg);
+}
+
+.message {
+	font-size: 16px;
+	font-weight: 600;
+	margin: 0;
+}
+
+.actions {
+	display: flex;
+	gap: 8px;
+}
+
+.replayButton {
+	background: var(--accent);
+	color: #fff;
+	border: 0;
+	border-radius: 6px;
+	padding: 8px 16px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: filter 0.15s ease;
+}
+
+.replayButton:hover {
+	filter: brightness(1.1);
+}
