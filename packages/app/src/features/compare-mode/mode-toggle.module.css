@@ -1,0 +1,46 @@
+.root {
+	display: inline-flex;
+	gap: 0;
+	border: 1px solid var(--border-strong);
+	border-radius: 6px;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+.legend {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+.button {
+	background: var(--bg);
+	color: var(--text-muted);
+	border: 0;
+	padding: 6px 14px;
+	cursor: pointer;
+	font-size: 14px;
+	transition: background 0.15s ease;
+}
+
+.button:hover {
+	background: var(--bg-elevated);
+}
+
+.button + .button {
+	border-left: 1px solid var(--border-strong);
+}
+
+.active {
+	background: var(--accent-bg);
+	color: var(--accent);
+	font-weight: 600;
+}
+
+.active:hover {
+	background: var(--accent-bg);
+}
