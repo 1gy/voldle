@@ -1,0 +1,36 @@
+{
+	"name": "@1gy/voldle-app",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc -b && vite build",
+		"preview": "vite preview",
+		"typecheck": "tsc -b",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"check": "biome check",
+		"check:write": "biome check --write"
+	},
+	"dependencies": {
+		"react": "^19.2.5",
+		"react-dom": "^19.2.5",
+		"jotai": "^2.19.1",
+		"@1gy/voldle-fetch-songs": "workspace:*"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.29.0",
+		"@rolldown/plugin-babel": "^0.2.3",
+		"@types/babel__core": "^7.20.5",
+		"@types/node": "^24.12.2",
+		"@types/react": "^19.2.14",
+		"@types/react-dom": "^19.2.3",
+		"@vitejs/plugin-react": "^6.0.1",
+		"babel-plugin-react-compiler": "^1.0.0",
+		"typescript": "~6.0.2",
+		"vite": "^8.0.10",
+		"vitest": "^4.1.5",
+		"@biomejs/biome": "catalog:"
+	}
+}

@@ -1,0 +1,75 @@
+.app {
+	max-width: 720px;
+	margin: 0 auto;
+	padding: 24px 16px 64px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 8px;
+}
+
+.title {
+	font-size: 24px;
+	font-weight: 700;
+	margin: 0;
+}
+
+.headerStats {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 2px;
+}
+
+.remaining,
+.candidates {
+	font-size: 14px;
+	color: var(--text-muted);
+}
+
+.remaining strong,
+.candidates strong {
+	color: var(--text);
+	font-size: 18px;
+	font-family: var(--mono);
+}
+
+.candidates strong {
+	color: var(--accent);
+}
+
+.controls {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 12px;
+}
+
+.modeLabel {
+	font-size: 13px;
+	color: var(--text-muted);
+}
+
+.history {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.loading,
+.error {
+	padding: 24px;
+	text-align: center;
+	color: var(--text-muted);
+}
+
+.error {
+	color: var(--danger);
+}
