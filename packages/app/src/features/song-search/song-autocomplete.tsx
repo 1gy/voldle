@@ -23,7 +23,8 @@ export const SongAutocomplete: FC<Props> = ({
 	const [highlight, setHighlight] = useState(0);
 	const listboxId = useId();
 	const optionIdPrefix = useId();
-	const optionId = (song: Song) => `${optionIdPrefix}-${song.songId}`;
+	const optionId = (song: Song) =>
+		`${optionIdPrefix}-${encodeURIComponent(song.songId)}`;
 
 	const { ref, onBlur } = useFocusOutside<HTMLDivElement>(() => setOpen(false));
 
