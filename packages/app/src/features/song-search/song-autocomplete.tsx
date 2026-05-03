@@ -109,6 +109,7 @@ export const SongAutocomplete: FC<Props> = ({
 								id={optionId(song)}
 								type="button"
 								role="option"
+								tabIndex={-1}
 								aria-selected={i === boundedHighlight}
 								className={`${styles.option} ${i === boundedHighlight ? styles.highlighted : ""}`}
 								onMouseEnter={() => setHighlight(i)}
