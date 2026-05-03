@@ -20,7 +20,7 @@ export const SongAutocomplete: FC<Props> = ({
 }) => {
 	const [query, setQuery] = useState("");
 	const [open, setOpen] = useState(false);
-	const [highlight, setHighlight] = useState(0);
+	const [highlight, setHighlight] = useState<number | null>(null);
 	const listboxId = useId();
 	const optionIdPrefix = useId();
 	const optionId = (song: Song) =>
@@ -41,13 +41,13 @@ export const SongAutocomplete: FC<Props> = ({
 	).slice(0, MAX_VISIBLE);
 
 	const boundedHighlight =
-		candidates.length === 0
-			? -1
+		highlight === null || candidates.length === 0
+			? null
 			: Math.min(Math.max(highlight, 0), candidates.length - 1);
 
 	const select = (song: Song) => {
 		setQuery("");
-		setHighlight(0);
+		setHighlight(null);
 		setOpen(false);
 		onSelect(song);
 	};
@@ -56,13 +56,15 @@ export const SongAutocomplete: FC<Props> = ({
 		if (!open) return;
 		if (e.key === "ArrowDown") {
 			e.preventDefault();
-			setHighlight(Math.min(boundedHighlight + 1, candidates.length - 1));
+			setHighlight(
+				Math.min((boundedHighlight ?? -1) + 1, candidates.length - 1),
+			);
 		} else if (e.key === "ArrowUp") {
 			e.preventDefault();
-			setHighlight(Math.max(boundedHighlight - 1, 0));
+			setHighlight(Math.max((boundedHighlight ?? 0) - 1, 0));
 		} else if (e.key === "Enter") {
 			e.preventDefault();
-			if (q === "") return;
+			if (boundedHighlight === null) return;
 			const picked = candidates[boundedHighlight];
 			if (picked) select(picked);
 		} else if (e.key === "Escape") {
@@ -71,7 +73,7 @@ export const SongAutocomplete: FC<Props> = ({
 	};
 
 	const activeOption =
-		boundedHighlight >= 0 ? candidates[boundedHighlight] : undefined;
+		boundedHighlight !== null ? candidates[boundedHighlight] : undefined;
 	const activeOptionId =
 		open && activeOption ? optionId(activeOption) : undefined;
 
@@ -84,7 +86,9 @@ export const SongAutocomplete: FC<Props> = ({
 				value={query}
 				placeholder="曲名 / アーティスト名で検索"
 				onChange={(e) => {
-					setQuery(e.target.value);
+					const v = e.target.value;
+					setQuery(v);
+					setHighlight(v.trim() === "" ? null : 0);
 					setOpen(true);
 				}}
 				onFocus={() => setOpen(true)}
