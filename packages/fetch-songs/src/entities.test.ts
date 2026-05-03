@@ -21,4 +21,9 @@ describe("decodeEntities", () => {
 		expect(decoded).toBe("a b");
 		expect(decoded.charCodeAt(1)).toBe(0x20);
 	});
+
+	it("leaves out-of-range numeric entities untouched instead of throwing", () => {
+		expect(decodeEntities("a&#11000000;b")).toBe("a&#11000000;b");
+		expect(decodeEntities("a&#xFFFFFF;b")).toBe("a&#xFFFFFF;b");
+	});
 });

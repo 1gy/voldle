@@ -29,10 +29,13 @@ const NAMED_ENTITIES: Record<string, string> = {
 	uuml: "ü",
 };
 
+const fromCodePoint = (m: string, code: number): string =>
+	code <= 0x10ffff ? String.fromCodePoint(code) : m;
+
 export const decodeEntities = (s: string): string =>
 	s
-		.replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
-		.replace(/&#x([0-9a-fA-F]+);/g, (_, n) =>
-			String.fromCodePoint(Number.parseInt(n, 16)),
+		.replace(/&#(\d+);/g, (m, n) => fromCodePoint(m, Number(n)))
+		.replace(/&#x([0-9a-fA-F]+);/g, (m, n) =>
+			fromCodePoint(m, Number.parseInt(n, 16)),
 		)
 		.replace(/&([a-zA-Z]+);/g, (m, name) => NAMED_ENTITIES[name] ?? m);
