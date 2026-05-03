@@ -55,6 +55,7 @@ export const submitGuessAtom = atom(
 	null,
 	(get, set, args: { guess: Song; target: Song }) => {
 		if (get(gameStatusAtom) !== "playing") return;
+		if (get(guessedSongIdsAtom).has(args.guess.songId)) return;
 		set(guessesAtom, [
 			...get(guessesAtom),
 			compareGuess(args.guess, args.target),
