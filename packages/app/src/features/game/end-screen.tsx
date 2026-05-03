@@ -19,7 +19,8 @@ export const EndScreen: FC<Props> = (props) => {
 		return (
 			<div className={`${styles.endScreen} ${styles.won}`}>
 				<p className={styles.message}>
-					正解です! 🎉 ({props.guessCount} 回で当てました)
+					正解です! <span aria-hidden="true">🎉</span> ({props.guessCount}{" "}
+					回で当てました)
 				</p>
 				<div className={styles.actions}>
 					<button
