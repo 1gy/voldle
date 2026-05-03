@@ -17,7 +17,7 @@ const CLASS_TO_DIFFICULTY = {
 type DifficultyKey = keyof typeof CLASS_TO_DIFFICULTY;
 
 const isDifficultyKey = (value: string): value is DifficultyKey =>
-	value in CLASS_TO_DIFFICULTY;
+	Object.hasOwn(CLASS_TO_DIFFICULTY, value);
 
 export type ParsedSong = Omit<Song, "songId">;
 
