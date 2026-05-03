@@ -21,7 +21,7 @@ options:
 
 class CliError extends Error {}
 
-const parsePositiveInt = (name: string, value: string): number => {
+const parseNonNegativeInt = (name: string, value: string): number => {
 	const n = Number(value);
 	if (!Number.isInteger(n) || n < 0) {
 		throw new CliError(
@@ -54,7 +54,7 @@ const parseArgs = (argv: string[]): CliOptions => {
 		}
 		switch (key) {
 			case "start-page":
-				opts.startPage = parsePositiveInt("start-page", value);
+				opts.startPage = parseNonNegativeInt("start-page", value);
 				if (opts.startPage < 1) {
 					throw new CliError("--start-page must be >= 1");
 				}
@@ -63,10 +63,10 @@ const parseArgs = (argv: string[]): CliOptions => {
 				opts.limit =
 					value === "all"
 						? Number.POSITIVE_INFINITY
-						: parsePositiveInt("limit", value);
+						: parseNonNegativeInt("limit", value);
 				break;
 			case "delay-ms":
-				opts.delayMs = parsePositiveInt("delay-ms", value);
+				opts.delayMs = parseNonNegativeInt("delay-ms", value);
 				break;
 			case "output":
 				opts.output = resolve(value);
