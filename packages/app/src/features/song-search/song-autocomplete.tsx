@@ -106,7 +106,15 @@ export const SongAutocomplete: FC<Props> = ({
 			{expanded && (
 				<div id={listboxId} className={styles.dropdown} role="listbox">
 					{candidates.length === 0 ? (
-						<div className={styles.empty}>該当する曲がありません</div>
+						<div
+							role="option"
+							tabIndex={-1}
+							aria-disabled="true"
+							aria-selected="false"
+							className={styles.empty}
+						>
+							該当する曲がありません
+						</div>
 					) : (
 						candidates.map((song, i) => (
 							<button
