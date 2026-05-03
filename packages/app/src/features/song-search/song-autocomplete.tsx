@@ -94,7 +94,7 @@ export const SongAutocomplete: FC<Props> = ({
 				aria-label="曲名検索"
 				aria-autocomplete="list"
 				aria-expanded={open}
-				aria-controls={listboxId}
+				aria-controls={open && !disabled ? listboxId : undefined}
 				aria-haspopup="listbox"
 				aria-activedescendant={activeOptionId}
 			/>
