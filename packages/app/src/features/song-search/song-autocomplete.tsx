@@ -72,10 +72,11 @@ export const SongAutocomplete: FC<Props> = ({
 		}
 	};
 
+	const expanded = open && !disabled;
 	const activeOption =
 		boundedHighlight !== null ? candidates[boundedHighlight] : undefined;
 	const activeOptionId =
-		open && activeOption ? optionId(activeOption) : undefined;
+		expanded && activeOption ? optionId(activeOption) : undefined;
 
 	return (
 		<div ref={ref} className={styles.root}>
@@ -97,12 +98,12 @@ export const SongAutocomplete: FC<Props> = ({
 				disabled={disabled}
 				aria-label="曲名検索"
 				aria-autocomplete="list"
-				aria-expanded={open}
-				aria-controls={open && !disabled ? listboxId : undefined}
+				aria-expanded={expanded}
+				aria-controls={expanded ? listboxId : undefined}
 				aria-haspopup="listbox"
 				aria-activedescendant={activeOptionId}
 			/>
-			{open && !disabled && (
+			{expanded && (
 				<div id={listboxId} className={styles.dropdown} role="listbox">
 					{candidates.length === 0 ? (
 						<div className={styles.empty}>該当する曲がありません</div>
