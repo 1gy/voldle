@@ -186,4 +186,14 @@ describe("assignSongIds", () => {
 			"Repeated(3)",
 		]);
 	});
+
+	it("throws when a real title collides with a synthetic (n) suffix", () => {
+		expect(() =>
+			assignSongIds([
+				{ title: "Foo", artist: "X", category: "", sheets: [] },
+				{ title: "Foo", artist: "Y", category: "", sheets: [] },
+				{ title: "Foo(2)", artist: "Z", category: "", sheets: [] },
+			]),
+		).toThrow(/songId collision/);
+	});
 });

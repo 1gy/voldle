@@ -139,5 +139,16 @@ export const assignSongIds = (parsed: ParsedSong[]): Song[] => {
 		const songId = n === 1 ? song.title : `${song.title}(${n})`;
 		result.push({ songId, ...song });
 	}
+	// Defence against a future song whose real title is e.g. "Foo(2)"
+	// colliding with the synthetic suffix applied to a duplicate "Foo".
+	const seen = new Set<string>();
+	for (const song of result) {
+		if (seen.has(song.songId)) {
+			throw new Error(
+				`songId collision: "${song.songId}". A song title may already contain the "(n)" suffix used for disambiguation; the songId scheme needs to change.`,
+			);
+		}
+		seen.add(song.songId);
+	}
 	return result;
 };
